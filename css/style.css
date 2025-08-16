@@ -1,0 +1,257 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  background-color: #f5f5f5;
+  color: #333;
+}
+header {
+  background-color: #F8B195;  /* soft blush for a refined, web-friendly feminine theme */
+  color: #333;  /* dark text for contrast with pastel background */
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 0 0 2rem;
+  border-radius: 8px 8px 0 0;  /* soften top corners and blend into content */
+}
+.contact {
+  font-size: 0.9rem;
+  margin: 0.5rem 2rem;
+}
+.cart-status {
+  font-size: 0.9rem;
+  margin: 0.5rem 2rem;
+}
+.product-list {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 2rem 2rem;
+}
+.product {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+}
+.product img {
+  max-width: 100%;
+  height: auto;
+}
+/* lightbox/modal */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal.hidden {
+  display: none;
+}
+.modal-content {
+  position: relative;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 90vw;
+  max-height: 90vh;
+  text-align: center;
+}
+.modal-content img {
+  max-width: 80vw;
+  max-height: 80vh;
+}
+.close {
+  position: absolute;
+  top: 0.5rem; right: 0.75rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.controls {
+  margin-top: 1rem;
+}
+.controls button {
+  background: #F8B195;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  font-family: monospace;
+}
+.add-to-cart {
+  display: block;
+  background: #264653;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem auto 0;
+  cursor: pointer;
+  font-family: monospace;
+}
+.add-to-cart:hover,
+.view-basket:hover,
+.send-order:hover {
+  opacity: 0.9;
+}
+}
+.cart-status {
+  font-size: 0.9rem;
+  margin: 0.5rem 2rem;
+}
+.add-to-cart {
+  display: block;
+  background: #264653;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem auto 0;
+  cursor: pointer;
+  font-family: monospace;
+}
+.add-to-cart:hover {
+  opacity: 0.9;
+}
+.view-basket {
+  background: #264653;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  font-family: monospace;
+}
+.view-basket:hover {
+  opacity: 0.9;
+}
+#basket-list {
+  list-style: none;
+  padding: 0;
+}
+#basket-list li {
+  margin: 0.5rem 0;
+}
+.send-order {
+  background: #F8B195;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-family: monospace;
+}
+.send-order:hover {
+  opacity: 0.9;
+}
+/* Top bar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  background: #F8B195;
+  font-size: 0.9rem;
+}
+.topbar a {
+  color: #333;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+/* Branding & Navigation */
+.branding {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+.main-nav a {
+  margin: 0 1rem;
+  color: #333;
+  text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+.hero img {
+  width: 100%;
+  display: block;
+}
+.hero-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+}
+.hero-text h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.hero-text p {
+  font-size: 1rem;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+.product-card {
+  background: #fff;
+  border: 1px solid #ccc;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+}
+.product-card img {
+  width: 100%;
+  height: auto;
+}
+.product-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+.product-card p {
+  color: #F8B195;
+  font-size: 1rem;
+}
+
+/* Contact Section */
+.site-contact {
+  padding: 2rem;
+  background: #f5f5f5;
+  text-align: center;
+}
+.site-contact a {
+  color: #264653;
+  text-decoration: none;
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 1rem;
+  background: #264653;
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .hero-text h2 {
+    font-size: 1.5rem;
+  }
+  .hero-text p {
+    font-size: 0.9rem;
+  }
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
