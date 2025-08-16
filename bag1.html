@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Colorful Tote – THUR</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="topbar">
+      <div class="lang-switch">
+        <a href="?lang=sq">SQ</a> | <a href="?lang=en">EN</a>
+      </div>
+      <div class="top-contact">
+        <a href="mailto:info@thur.com">info@thur.com</a> |
+        <a href="https://instagram.com/thurbags" target="_blank">@thurbags</a>
+      </div>
+    </div>
+    <div class="branding">
+      <h1>THUR</h1>
+      <nav class="main-nav">
+        <a href="index.html" data-key="home">Ballina</a>
+        <a href="index.html#bags" data-key="bags">Çantat</a>
+        <a href="index.html#contact" data-key="contactNav">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+  <main class="bag-detail">
+    <div class="bag-images">
+      <img id="mainImage" class="main-image" src="img/bag1-1.jpeg" alt="Colorful Tote">
+      <div class="thumbnails">
+        <img class="thumb" src="img/bag1-1.jpeg" alt="Colorful Tote">
+        <img class="thumb" src="img/bag1-2.jpeg" alt="Colorful Tote">
+        <img class="thumb" src="img/bag1-3.jpeg" alt="Colorful Tote">
+      </div>
+    </div>
+    <div class="bag-info">
+      <h1>Colorful Tote</h1>
+      <p>Price: $30</p>
+      <button class="add-to-cart">Add to Basket</button>
+      <h2 data-key="sectionContactTitle">Na Kontaktoni</h2>
+      <p data-key="sectionContactText">
+        Pyetje ose porosi të personalizuara? Na kontaktoni në email
+        <a href="mailto:info@thur.com">info@thur.com</a>
+      </p>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <p>&copy; 2024 THUR</p>
+  </footer>
+  <script>
+    document.querySelectorAll('.thumb').forEach(img => {
+      img.addEventListener('click', () => {
+        document.getElementById('mainImage').src = img.src;
+      });
+    });
+  </script>
+</body>
+</html>

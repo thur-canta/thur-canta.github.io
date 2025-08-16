@@ -1,133 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
   <meta charset="UTF-8">
-  <title>THUR</title>
+  <title>THUR – Knitted Bags</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <h1>THUR</h1>
-    <p class="contact">
-      <a href="https://instagram.com/yourhandle" target="_blank">@yourhandle</a>
-      | <a href="mailto:info@thur.com">info@thur.com</a>
-    </p>
-    <p class="cart-status">
-      Basket: <span id="cart-count">0</span>
-      <button id="view-basket" class="view-basket">View Basket</button>
-    </p>
+  <header class="site-header">
+    <div class="topbar">
+      <div class="lang-switch">
+        <a href="?lang=sq">SQ</a> | <a href="?lang=en">EN</a>
+      </div>
+      <div class="top-contact">
+        <a href="mailto:info@thur.com">info@thur.com</a> |
+        <a href="https://instagram.com/thurbags" target="_blank">@thurbags</a>
+      </div>
+    </div>
+    <div class="branding">
+      <h1>THUR</h1>
+      <nav class="main-nav">
+        <a href="#home" data-key="home">Ballina</a>
+        <a href="#bags" data-key="bags">Çantat</a>
+        <a href="#contact" data-key="contactNav">Kontakt</a>
+      </nav>
+    </div>
   </header>
-  <main>
-    <div class="product-list"></div>
-  </main>
-  <footer>
+
+  <section id="home" class="hero">
+    <img src="img/bag1-1.jpeg" alt="Knitted Bags Collection">
+    <div class="hero-text">
+      <h2 data-key="heroTitle">Çanta të thurura me dorë</h2>
+      <p data-key="heroText">Zbuloni dizajnet tona të fundit të thurura me dorë, të krijuara me dashuri dhe kujdes.</p>
+    </div>
+  </section>
+
+  <section id="bags" class="product-grid">
+    <a href="bag1.html" class="product-card">
+      <img src="img/bag1-1.jpeg" alt="Colorful Tote">
+      <h3>Colorful Tote</h3>
+      <p>$30</p>
+    </a>
+    <a href="bag2.html" class="product-card">
+      <img src="img/bag2-1.jpeg" alt="Mini Satchel">
+      <h3>Mini Satchel</h3>
+      <p>$25</p>
+    </a>
+    <!-- …add more product cards as needed… -->
+  </section>
+
+  <section id="contact" class="site-contact">
+    <h2 data-key="sectionContactTitle">Na Kontaktoni</h2>
+    <p data-key="sectionContactText">Pyetje ose porosi të personalizuara? Na kontaktoni në email
+      <a href="mailto:info@thur.com">info@thur.com</a> ose DM në Instagram.</p>
+  </section>
+
+  <footer class="site-footer">
     <p>&copy; 2024 THUR</p>
   </footer>
 
-  <!-- lightbox modal -->
-  <div id="modal" class="modal hidden">
-    <div class="modal-content">
-      <span id="modal-close" class="close">&times;</span>
-      <img id="modal-img" src="" alt="">
-      <div class="controls">
-        <button id="modal-prev">◀ Prev</button>
-        <button id="modal-next">Next ▶</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- basket modal -->
-  <div id="basket-modal" class="modal hidden">
-    <div class="modal-content">
-      <span id="basket-close" class="close">&times;</span>
-      <h2>Your Basket</h2>
-      <ul id="basket-list"></ul>
-      <p>Total: $<span id="basket-total">0</span></p>
-      <button id="basket-send" class="send-order">Send Order</button>
-    </div>
-  </div>
-
   <script>
-    const cart = [];
-    const products = [
-      { name: 'Çantë lule', price: 30, images: ['bag1-1.jpeg','bag1-2.jpeg','bag1-3.jpeg'] },
-      { name: 'Çantë mini', price: 25, images: ['bag2-1.jpeg','bag2-2.jpeg','bag2-3.jpeg'] }
-    ];
-    const container = document.querySelector('.product-list');
-    products.forEach((prod, pi) => {
-      const card = document.createElement('div');
-      card.className = 'product';
-      card.innerHTML = `
-        <img src="img/${prod.images[0]}" alt="${prod.name}">
-        <h2>${prod.name}</h2>
-        <p>Price: $${prod.price}</p>
-        <button class="add-to-cart">Add to Basket</button>
-      `;
-      card.addEventListener('click', () => openModal(pi));
-      const btn = card.querySelector('.add-to-cart');
-      btn.addEventListener('click', e => {
-        e.stopPropagation();
-        cart.push(prod);
-        document.getElementById('cart-count').textContent = cart.length;
-      });
-      container.appendChild(card);
+    const translations = {
+      sq: {
+        home: "Ballina",
+        bags: "Çantat",
+        contactNav: "Kontakt",
+        heroTitle: "Çanta të thurura me dorë",
+        heroText: "Zbuloni dizajnet tona të fundit të thurura me dorë, të krijuara me dashuri dhe kujdes.",
+        sectionContactTitle: "Na Kontaktoni",
+        sectionContactText: "Pyetje ose porosi të personalizuara? Na kontaktoni në email"
+      },
+      en: {
+        home: "Home",
+        bags: "Bags",
+        contactNav: "Contact",
+        heroTitle: "Handmade Knitted Bags",
+        heroText: "Discover our latest handcrafted designs, made with love and care.",
+        sectionContactTitle: "Contact Us",
+        sectionContactText: "Questions or custom orders? Email us at"
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get("lang") === "en" ? "en" : "sq";
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-key]").forEach(el => {
+      const key = el.getAttribute("data-key");
+      el.innerText = translations[lang][key] || el.innerText;
     });
-
-    const modal    = document.getElementById('modal');
-    const mImg     = document.getElementById('modal-img');
-    const closeBtn = document.getElementById('modal-close');
-    const prevBtn  = document.getElementById('modal-prev');
-    const nextBtn  = document.getElementById('modal-next');
-    let currP = 0, currI = 0;
-
-    function openModal(pi) {
-      currP = pi; currI = 0;
-      updateModal();
-      modal.classList.remove('hidden');
-    }
-    function updateModal() {
-      const img = products[currP].images[currI];
-      mImg.src = `img/${img}`;
-      mImg.alt = products[currP].name;
-    }
-    closeBtn.onclick = () => modal.classList.add('hidden');
-    prevBtn.onclick  = () => {
-      currI = (currI - 1 + products[currP].images.length) % products[currP].images.length;
-      updateModal();
-    };
-    nextBtn.onclick  = () => {
-      currI = (currI + 1) % products[currP].images.length;
-      updateModal();
-    };
-
-    // basket modal logic
-    const basketModal = document.getElementById('basket-modal');
-    const basketList  = document.getElementById('basket-list');
-    const basketTotal = document.getElementById('basket-total');
-    document.getElementById('view-basket').onclick = () => {
-      const summary = {};
-      cart.forEach(p => summary[p.name] = (summary[p.name]||0) + 1);
-      basketList.innerHTML = '';
-      let total = 0;
-      Object.entries(summary).forEach(([name, qty]) => {
-        const prod = products.find(p => p.name === name);
-        const li = document.createElement('li');
-        li.textContent = `${name} x${qty} - $${prod.price * qty}`;
-        basketList.appendChild(li);
-        total += prod.price * qty;
-      });
-      basketTotal.textContent = total;
-      basketModal.classList.remove('hidden');
-    };
-    document.getElementById('basket-close').onclick = () => basketModal.classList.add('hidden');
-    document.getElementById('basket-send').onclick = () => {
-      const lines = cart.map(p => `${p.name} - $${p.price}`);
-      const total = basketTotal.textContent;
-      const body = encodeURIComponent(lines.join('\n') + `\nTotal: $${total}`);
-      window.location.href = `mailto:abcde@gmail.com?subject=Order%20from%20THUR&body=${body}`;
-    };
   </script>
-</body>
-</html>
 </body>
 </html>
