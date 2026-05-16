@@ -28,6 +28,24 @@ const SITE = {
   currency: "€"
 };
 
+// ====================================================
+// EMAILJS — Konfigurim për dërgimin e email-eve
+// Udhëzime: shiko README ose kërko ndihmë
+//
+// 1. Hapi llogari falas te https://www.emailjs.com
+// 2. Lidh llogarinë tënde Outlook (Email Services)
+// 3. Krijo dy template (Email Templates):
+//    - template_owner : njoftim për TY (pronaren) kur vjen porosi e re
+//    - template_customer : konfirmim për BLERËSIN
+// 4. Shto kredencialet këtu:
+// ====================================================
+const EMAILJS = {
+  publicKey:          "VENDOS_PUBLIC_KEY_KETU",     // Account > API Keys
+  serviceId:          "VENDOS_SERVICE_ID_KETU",     // Email Services > Service ID
+  ownerTemplateId:    "VENDOS_OWNER_TEMPLATE_ID",   // Email Templates > template_owner
+  customerTemplateId: "VENDOS_CUSTOMER_TEMPLATE_ID" // Email Templates > template_customer
+};
+
 const PRODUCTS = [
   {
     id: "cante-shumengyryshe",
