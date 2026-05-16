@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Porosia – Thur Handmade</title>
+  <title>Porosia - Thur Handmade</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -29,8 +29,15 @@
           </div>
 
           <div class="form-group">
-            <label for="phone">Numri i telefonit *</label>
+            <label for="phone">Numri i telefonit * <small>(Kosovë)</small></label>
             <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="p.sh. 044 123 456">
+            <span class="field-error" id="phone-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email adresa *</label>
+            <input type="email" id="email" name="email" required autocomplete="email" placeholder="p.sh. fjolla@gmail.com">
+            <span class="field-error" id="email-error"></span>
           </div>
 
           <div class="form-group">

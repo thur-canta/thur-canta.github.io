@@ -18,8 +18,8 @@
   <section class="hero">
     <img src="img/bag3-5.jpeg" alt="Koleksioni Thur" class="hero-bg">
     <div class="hero-content">
-      <!-- <h1>Love stitched into every bag 👜💞</h1> -->
-      <h1>E thurur me dashuri 🪡👜💞</h1>
+      <h1>Love stitched into every bag 👜💞</h1> 
+      <!-- <h1>E thurur me dashuri 🪡👜💞</h1>-->
       <p>Çanta unike, të punuara me dorë, perfekte për ditët tuaja të lumtura.</p>
       <a href="dyqani.html" class="btn btn-primary">Shiko koleksionin</a>
     </div>
@@ -100,8 +100,14 @@
               <input type="text" id="co-name" name="name" required placeholder="p.sh. Fjolla Krasniqi">
             </div>
             <div class="form-group">
-              <label for="co-phone">Numri i telefonit *</label>
+              <label for="co-phone">Numri i telefonit * <small>(Kosovë)</small></label>
               <input type="tel" id="co-phone" name="phone" required placeholder="p.sh. 044 123 456">
+              <span class="field-error" id="co-phone-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="co-email">Email adresa *</label>
+              <input type="email" id="co-email" name="email" required placeholder="p.sh. fjolla@gmail.com">
+              <span class="field-error" id="co-email-error"></span>
             </div>
             <div class="form-group">
               <label for="co-color">Ngjyra e dëshiruar</label>

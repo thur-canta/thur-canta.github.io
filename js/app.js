@@ -6,6 +6,38 @@
 
   const CART_KEY = 'thur_cart';
 
+  /* ── Validation helpers ──────────────────────────── */
+
+  // Kosovo numbers: 04x/06x xxx xxx or +3834x / +3836x
+  // Operators: 044/045/046/049 (IPKO), 043/047/048 (Vala), 060/061/062/063/066
+  const KOSOVO_PHONE_RE = /^(\+3836[0-9]|06[0-9]|\+3834[3-9]|04[3-9])[0-9\s]{6,8}$/;
+
+  function validatePhone(raw) {
+    const clean = raw.replace(/[\s\-().]/g, '');
+    return KOSOVO_PHONE_RE.test(clean);
+  }
+
+  function validateEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+  }
+
+  function showFieldError(id, msg) {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = msg; el.style.display = msg ? 'block' : 'none'; }
+  }
+
+  function clearFieldError(id) { showFieldError(id, ''); }
+
+  // Live-clear errors as user types
+  function attachLiveValidation(inputId, errorId, validatorFn, errorMsg) {
+    const el = document.getElementById(inputId);
+    if (!el) return;
+    el.addEventListener('input', () => {
+      if (el.value && !validatorFn(el.value)) showFieldError(errorId, errorMsg);
+      else clearFieldError(errorId);
+    });
+  }
+
   /* ── Cart helpers ────────────────────────────────── */
 
   function getCart() {
@@ -231,20 +263,43 @@
       r.addEventListener('change', () => { bankBox.style.display = r.value === 'transfer' ? 'block' : 'none'; })
     );
 
+    // live validation
+    attachLiveValidation('phone', 'phone-error', validatePhone,
+      '⚠ Numri duhet të jetë nga Kosova (p.sh. 044 123 456)');
+    attachLiveValidation('email', 'email-error', validateEmail,
+      '⚠ Shkruani një email adresë të vlefshme');
+
     // submit
     form.addEventListener('submit', e => {
       e.preventDefault();
       const fd = new FormData(form);
-      const name = fd.get('name');
-      const phone = fd.get('phone');
-      const city = fd.get('city');
-      const address = fd.get('address');
+      const name    = fd.get('name').trim();
+      const phone   = fd.get('phone').trim();
+      const email   = fd.get('email').trim();
+      const city    = fd.get('city');
+      const address = fd.get('address').trim();
       const payment = fd.get('payment');
-      const notes = fd.get('notes') || '';
+      const notes   = fd.get('notes') || '';
+
+      // Validate
+      let valid = true;
+      if (!validatePhone(phone)) {
+        showFieldError('phone-error', '⚠ Numri duhet të jetë nga Kosova (p.sh. 044 123 456)');
+        valid = false;
+      }
+      if (!validateEmail(email)) {
+        showFieldError('email-error', '⚠ Shkruani një email adresë të vlefshme');
+        valid = false;
+      }
+      if (!valid) return;
+
+      clearFieldError('phone-error');
+      clearFieldError('email-error');
+
       const orderNo = 'TH-' + Date.now().toString(36).toUpperCase();
 
       let txt = `🛒 POROSI E RE — ${orderNo}\n\n`;
-      txt += `👤 ${name}\n📞 ${phone}\n📍 ${city}, ${address}\n`;
+      txt += `👤 ${name}\n📞 ${phone}\n� ${email}\n�📍 ${city}, ${address}\n`;
       txt += `💳 ${payment === 'cod' ? 'Pagesë në dorëzim' : 'Transfer bankar'}\n`;
       if (notes) txt += `📝 ${notes}\n`;
       txt += '\n--- Produktet ---\n';
@@ -284,7 +339,7 @@
           <a href="${waUrl}" target="_blank" rel="noopener" class="btn btn-whatsapp">📱 Dërgo në WhatsApp</a>
           <a href="${mailUrl}" class="btn btn-outline">✉️ Dërgo me Email</a>
         </div>
-        <a href="index.html" class="btn btn-outline" style="margin-top:1rem">← Kthehu në faqen kryesore</a>
+        <a href="index.html" class="btn btn-outline" style="margin-top:1rem"> <- Kthehu në faqen kryesore</a>
         <p class="conf-note">Do të kontaktoheni nga ekipi ynë për konfirmimin e porosisë.</p>
       </div>`;
   }
@@ -295,18 +350,38 @@
     const form = document.getElementById('custom-order-form');
     if (!form) return;
 
+    attachLiveValidation('co-phone', 'co-phone-error', validatePhone,
+      '⚠ Numri duhet të jetë nga Kosova (p.sh. 044 123 456)');
+    attachLiveValidation('co-email', 'co-email-error', validateEmail,
+      '⚠ Shkruani një email adresë të vlefshme');
+
     form.addEventListener('submit', e => {
       e.preventDefault();
       const fd = new FormData(form);
-      const name = fd.get('name');
-      const phone = fd.get('phone');
-      const color = fd.get('color') || 'Pa preferencë';
-      const size = fd.get('size');
-      const type = fd.get('type');
+      const name   = fd.get('name').trim();
+      const phone  = fd.get('phone').trim();
+      const email  = fd.get('email').trim();
+      const color  = fd.get('color') || 'Pa preferencë';
+      const size   = fd.get('size');
+      const type   = fd.get('type');
       const details = fd.get('details');
 
+      let valid = true;
+      if (!validatePhone(phone)) {
+        showFieldError('co-phone-error', '⚠ Numri duhet të jetë nga Kosova (p.sh. 044 123 456)');
+        valid = false;
+      }
+      if (!validateEmail(email)) {
+        showFieldError('co-email-error', '⚠ Shkruani një email adresë të vlefshme');
+        valid = false;
+      }
+      if (!valid) return;
+
+      clearFieldError('co-phone-error');
+      clearFieldError('co-email-error');
+
       let txt = `✨ POROSI SIPAS DËSHIRËS\n\n`;
-      txt += `👤 ${name}\n📞 ${phone}\n`;
+      txt += `👤 ${name}\n📞 ${phone}\n📧 ${email}\n`;
       txt += `🎨 Ngjyra: ${color}\n📐 Madhësia: ${size}\n👜 Tipi: ${type}\n`;
       txt += `📝 Përshkrimi:\n${details}`;
 
