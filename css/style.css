@@ -535,6 +535,15 @@ ul, ol { list-style: none; }
 .conf-bank h3 { margin-bottom: .5rem; }
 .conf-bank p { margin-bottom: .25rem; }
 .conf-ref { margin-top: .75rem; color: var(--clr-primary); }
+.conf-sent-status {
+  background: #f0faf0;
+  border: 1px solid #a8d5a8;
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  text-align: left;
+}
+.conf-sent-status p { margin: .35rem 0; font-size: .9rem; }
 .conf-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
 .conf-note { margin-top: 2rem; font-size: .85rem; color: var(--clr-text-light); }
 

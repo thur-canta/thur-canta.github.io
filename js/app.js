@@ -312,22 +312,38 @@
 
       const orderNo = 'TH-' + Date.now().toString(36).toUpperCase();
 
-      let txt = `🛒 POROSI E RE — ${orderNo}\n\n`;
-      txt += `👤 ${name}\n📞 ${phone}\n� ${email}\n�📍 ${city}, ${address}\n`;
-      txt += `💳 ${payment === 'cod' ? 'Pagesë në dorëzim' : 'Transfer bankar'}\n`;
-      if (notes) txt += `📝 ${notes}\n`;
-      txt += '\n--- Produktet ---\n';
+      // --- Message to OWNER (WhatsApp) ---
+      let ownerTxt = '\u{1F6D2} POROSI E RE \u2014 ' + orderNo + '\\n\\n';
+      ownerTxt += '\u{1F464} ' + name + '\\n\u{1F4DE} ' + phone + '\\n\u{1F4E7} ' + email + '\\n\u{1F4CD} ' + city + ', ' + address + '\\n';
+      ownerTxt += '\u{1F4B3} ' + (payment === 'cod' ? 'Pags\u00ebr n\u00eb dor\u00ebzim' : 'Transfer bankar') + '\\n';
+      if (notes) ownerTxt += '\u{1F4DD} ' + notes + '\\n';
+      ownerTxt += '\\n--- Produktet ---\\n';
       cart.forEach(i => {
         const p = productById(i.id);
-        if (p) txt += `• ${p.name} × ${i.qty} = ${(p.price * i.qty).toFixed(2)}€\n`;
+        if (p) ownerTxt += '\u2022 ' + p.name + ' \u00d7 ' + i.qty + ' = ' + (p.price * i.qty).toFixed(2) + '\u20ac\\n';
       });
-      txt += `\nTransporti: ${ship === 0 ? 'FALAS' : ship.toFixed(2) + '€'}`;
-      txt += `\nTOTALI: ${total.toFixed(2)}€`;
+      ownerTxt += '\\nTransporti: ' + (ship === 0 ? 'FALAS' : ship.toFixed(2) + '\u20ac');
+      ownerTxt += '\\nTOTALI: ' + total.toFixed(2) + '\u20ac';
 
-      const waUrl = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(txt)}`;
+      const waUrl = 'https://wa.me/' + SITE.whatsapp + '?text=' + encodeURIComponent(ownerTxt);
 
-      // email fallback
-      const mailUrl = `mailto:${SITE.email}?subject=${encodeURIComponent('Porosi ' + orderNo)}&body=${encodeURIComponent(txt)}`;
+      // --- Confirmation email to CUSTOMER ---
+      let custTxt = 'P\u00ebrsh\u00ebndetje ' + name + ',\\n\\nFaleminder\u00ebt p\u00ebr porosin\u00eb tuaj! Sap\u00eb e kemi pranuar dhe do t\u2019ju kontaktojm\u00eb s\u00eb shpejti.\\n\\n';
+      custTxt += 'Nr. i porosis\u00eb: ' + orderNo + '\\n\\n--- Produktet ---\\n';
+      cart.forEach(i => {
+        const p = productById(i.id);
+        if (p) custTxt += '\u2022 ' + p.name + ' \u00d7 ' + i.qty + ' = ' + (p.price * i.qty).toFixed(2) + '\u20ac\\n';
+      });
+      custTxt += '\\nTransporti: ' + (ship === 0 ? 'FALAS' : ship.toFixed(2) + '\u20ac');
+      custTxt += '\\nTOTALI: ' + total.toFixed(2) + '\u20ac';
+      custTxt += '\\nAdresa e dor\u00ebzimit: ' + city + ', ' + address;
+      custTxt += '\\nM\u00ebnyra e pag\u00ebs\u00ebs: ' + (payment === 'cod' ? 'Pags\u00ebr n\u00eb dor\u00ebzim' : 'Transfer bankar');
+      if (payment === 'transfer') {
+        custTxt += '\\n\\n-- Detajet bankare --\\nBanka: ' + SITE.bank.name + '\\nIBAN: ' + SITE.bank.iban + '\\nReference pagese: ' + orderNo;
+      }
+      custTxt += '\\n\\nMe dashuri,\\nThur Handmade';
+
+      const mailToCustomer = 'mailto:' + email + '?subject=' + encodeURIComponent('Konfirmim i porosis\u00eb \u2014 ' + orderNo) + '&body=' + encodeURIComponent(custTxt);
 
       // save order locally in browser storage
       saveOrderLocally({
@@ -343,17 +359,26 @@
       });
 
       clearCart();
-      showConfirmation(orderNo, payment, waUrl, mailUrl);
+
+      // Fire both channels from the submit user-gesture so browsers allow them
+      window.open(waUrl, '_blank', 'noopener');   // owner: WhatsApp in new tab
+      window.location.href = mailToCustomer;       // customer: opens mail client (no navigation)
+
+      showConfirmation(orderNo, payment);
     });
   }
 
-  function showConfirmation(orderNo, payment, waUrl, mailUrl) {
+  function showConfirmation(orderNo, payment) {
     document.querySelector('main').innerHTML = `
       <div class="confirmation">
         <div class="conf-icon">✓</div>
         <h1>Faleminderit për porosinë!</h1>
         <p class="conf-order">Numri i porosisë: <strong>${orderNo}</strong></p>
         <p>Porosia juaj u regjistrua me sukses.</p>
+        <div class="conf-sent-status">
+          <p>📱 <strong>WhatsApp</strong> u hap te dyqani ynë — dërgoni mesazhin për të konfirmuar.</p>
+          <p>✉️ <strong>Email</strong> u hap në pajisjen tuaj — dërgoni për të marrë konfirmimin.</p>
+        </div>
         ${payment === 'transfer' ? `
           <div class="conf-bank">
             <h3>Detajet e pagesës me transfer bankar</h3>
@@ -362,11 +387,7 @@
             <p><strong>Emri:</strong> ${SITE.bank.owner}</p>
             <p class="conf-ref">Shkruani <strong>${orderNo}</strong> si referencë të pagesës.</p>
           </div>` : '<p>Pagesa do të bëhet në dorëzim.</p>'}
-        <div class="conf-actions">
-          <a href="${waUrl}" target="_blank" rel="noopener" class="btn btn-whatsapp">📱 Dërgo në WhatsApp</a>
-          <a href="${mailUrl}" class="btn btn-outline">✉️ Dërgo me Email</a>
-        </div>
-        <a href="index.html" class="btn btn-outline" style="margin-top:1rem"> <- Kthehu në faqen kryesore</a>
+        <a href="index.html" class="btn btn-outline" style="margin-top:1rem">&larr; Kthehu në faqen kryesore</a>
         <p class="conf-note">Do të kontaktoheni nga ekipi ynë për konfirmimin e porosisë.</p>
         <p class="conf-note" style="margin-top:.5rem;font-size:.8rem;color:var(--clr-text-light)">
           💾 Porosia u ruajt edhe në këtë pajisje.
