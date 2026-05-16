@@ -12,9 +12,9 @@
 const SITE = {
   name: "Thur Handmade",
   tagline: "Love stitched into every bag 👜💞",
-  phone: "+383 44 123 456",          // NDRYSHO: numrin e telefonit
-  whatsapp: "38344123456",            // NDRYSHO: numrin e WhatsApp (pa + dhe pa hapësira)
-  email: "info@thurhandmade.com",     // NDRYSHO: email adresën
+  phone: "+383 44 541 235",          // NDRYSHO: numrin e telefonit
+  whatsapp: "38344541235",            // NDRYSHO: numrin e WhatsApp (pa + dhe pa hapësira)
+  email: "thurcanta@outlook.com",     // NDRYSHO: email adresën
   instagram: "f_erahandmade",         // Llogaria e Instagram
   address: "Prishtinë, Kosovë",
   bank: {
