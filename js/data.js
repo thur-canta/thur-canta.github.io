@@ -11,7 +11,7 @@
 
 const SITE = {
   name: "Thur Handmade",
-  tagline: "Love stitched into every bag 👜💞",
+  tagline: "Dashuri në çdo çantë 🪡👜💞",
   phone: "+383 44 541 235",          // NDRYSHO: numrin e telefonit
   whatsapp: "38344541235",            // NDRYSHO: numrin e WhatsApp (pa + dhe pa hapësira)
   email: "thurcanta@outlook.com",     // NDRYSHO: email adresën
@@ -134,7 +134,7 @@ const PRODUCTS = [
     id: "cante-perla",
     name: "Çantë me Perla",
     price: 42,
-    description: "Natyrale. E pastër. E krijuar me kujdes 🤍 Çantë elegante me detaje perla — aksesori perfekt për çdo veshje.",
+    description: "Natyrale. E pastër. E krijuar me kujdes 🤍 Çantë elegante me detaje perla, aksesori perfekt për çdo veshje.",
     details: "Material: Fije cilësore + Perla · Madhësia: 28 × 25 cm · Punë dore (crochet) · Krijuar në Kosovë",
     images: [
       "img/bag8-1.jpeg"
@@ -145,7 +145,7 @@ const PRODUCTS = [
     id: "cante-lule",
     name: "Çantë me Lule",
     price: 35,
-    description: "Çantë me detaje lule të thurura — stil i freskët dhe natyral për çdo ditë. Përshtatet lehtë me çdo veshje.",
+    description: "Çantë me detaje lule të thurura, stil i freskët dhe natyral për çdo ditë. Përshtatet lehtë me çdo veshje.",
     details: "Material: Fije cilësore · Madhësia: 30 × 28 cm · Punë dore (crochet) · Krijuar në Kosovë",
     images: [
       "img/bag9-1.jpeg",
@@ -158,7 +158,7 @@ const PRODUCTS = [
     id: "cante-zinxhir",
     name: "Çantë me Zinxhir",
     price: 36,
-    description: "Çantë elegante me zinxhir metalik — stil modern dhe i rafinuar. Perfekte për mbrëmje speciale.",
+    description: "Çantë elegante me zinxhir metalik, stil modern dhe i rafinuar. Perfekte për mbrëmje speciale.",
     details: "Material: Fije cilësore + Zinxhir · Madhësia: 22 × 18 cm · Punë dore (crochet) · Krijuar në Kosovë",
     images: [
       "img/bag10-1.jpeg"
@@ -169,7 +169,7 @@ const PRODUCTS = [
     id: "cante-natyrore",
     name: "Çantë Natyrore",
     price: 40,
-    description: "Çantë me dizajn të hapur — e lehtë, e freskët, perfekte për verë. Stil boho-chic natyral.",
+    description: "Çantë me dizajn të hapur, e lehtë, e freskët, perfekte për verë. Stil boho-chic natyral.",
     details: "Material: Fije cilësore · Madhësia: 38 × 35 cm · Punë dore (crochet) · Krijuar në Kosovë",
     images: [
       "img/bag11-1.jpeg",
@@ -181,7 +181,7 @@ const PRODUCTS = [
     id: "cante-gri",
     name: "Çantë Gri Elegante",
     price: 38,
-    description: "Çantë e thjeshtë por plot stil — ngjyrë gri elegante me dorezë rrethore. Minimaliste dhe funksionale.",
+    description: "Çantë e thjeshtë por plot stil, ngjyrë gri elegante me dorezë rrethore. Minimaliste dhe funksionale.",
     details: "Material: Fije cilësore · Madhësia: 35 × 30 cm · Punë dore (crochet) · Krijuar në Kosovë",
     images: [
       "img/bag12-1.jpeg"
