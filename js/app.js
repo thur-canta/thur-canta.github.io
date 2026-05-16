@@ -376,8 +376,8 @@
         <p class="conf-order">Numri i porosisë: <strong>${orderNo}</strong></p>
         <p>Porosia juaj u regjistrua me sukses.</p>
         <div class="conf-sent-status">
-          <p>📱 <strong>WhatsApp</strong> u hap te dyqani ynë — dërgoni mesazhin për të konfirmuar.</p>
-          <p>✉️ <strong>Email</strong> u hap në pajisjen tuaj — dërgoni për të marrë konfirmimin.</p>
+          <p>📱 <strong>WhatsApp</strong> u hap te dyqani ynë, dërgoni mesazhin për të konfirmuar.</p>
+          <p>✉️ <strong>Email</strong> u hap në pajisjen tuaj, dërgoni për të marrë konfirmimin.</p>
         </div>
         ${payment === 'transfer' ? `
           <div class="conf-bank">
