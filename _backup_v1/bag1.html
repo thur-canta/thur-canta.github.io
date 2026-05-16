@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="sq">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mini Satchel – THUR</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Colorful Tote – THUR</title>
+  <!-- disable caching -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
   <header class="site-header">
@@ -22,22 +26,24 @@
         <a href="index.html" data-key="home">Ballina</a>
         <a href="index.html#bags" data-key="bags">Çantat</a>
         <a href="index.html#contact" data-key="contactNav">Kontakt</a>
+        <a href="basket.html">Basket</a>
       </nav>
+      <span class="cart-status">Basket: <span id="cart-count">0</span></span>
+      <button id="view-basket" class="view-basket">View Basket</button>
     </div>
   </header>
-
   <main class="bag-detail">
     <div class="bag-images">
-      <img id="mainImage" class="main-image" src="img/bag2-1.jpeg" alt="Mini Satchel">
+      <img id="mainImage" class="main-image" src="img/bag1-1.jpeg" alt="Colorful Tote">
       <div class="thumbnails">
-        <img class="thumb" src="img/bag2-1.jpeg" alt="Mini Satchel">
-        <img class="thumb" src="img/bag2-2.jpeg" alt="Mini Satchel">
-        <img class="thumb" src="img/bag2-3.jpeg" alt="Mini Satchel">
+        <img class="thumb" src="img/bag1-1.jpeg" alt="Colorful Tote">
+        <img class="thumb" src="img/bag1-2.jpeg" alt="Colorful Tote">
+        <img class="thumb" src="img/bag1-3.jpeg" alt="Colorful Tote">
       </div>
     </div>
     <div class="bag-info">
-      <h1>Mini Satchel</h1>
-      <p>Price: $25</p>
+      <h1>Colorful Tote</h1>
+      <p>Price: $30</p>
       <button class="add-to-cart">Add to Basket</button>
       <h2 data-key="sectionContactTitle">Na Kontaktoni</h2>
       <p data-key="sectionContactText">
@@ -46,16 +52,17 @@
       </p>
     </div>
   </main>
-
   <footer class="site-footer">
-    <p>&copy; 2024 THUR</p>
+    <p>&copy; 2025 THUR</p>
   </footer>
 
   <script>
-    document.querySelectorAll('.thumb').forEach(img => {
-      img.addEventListener('click', () => {
-        document.getElementById('mainImage').src = img.src;
-      });
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.thumb').forEach(img =>
+        img.addEventListener('click', () =>
+          document.getElementById('mainImage').src = img.src
+        )
+      );
     });
   </script>
 </body>

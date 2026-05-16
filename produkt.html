@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produkt – Thur Handmade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="product">
+
+  <div class="announce-bar">🚚 Transport falas për porosi mbi 50€ në gjithë Kosovën</div>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">Thur<small>Handmade</small></a>
+      <div class="nav-links">
+        <a href="index.html">Ballina</a>
+        <a href="dyqani.html">Dyqani</a>
+        <a href="index.html#story">Rreth nesh</a>
+        <a href="index.html#custom-order">Porosi sipas dëshirës</a>
+        <a href="index.html#footer-contact">Kontakt</a>
+        <a href="shporta.html" class="cart-link">
+          <span class="cart-icon">🛒</span>
+          Shporta
+          <span class="cart-badge">0</span>
+        </a>
+      </div>
+      <a href="shporta.html" class="mobile-cart" aria-label="Shporta">
+        🛒<span class="cart-badge">0</span>
+      </a>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="index.html">Ballina</a>
+        <span>›</span>
+        <a href="dyqani.html">Dyqani</a>
+        <span>›</span>
+        <span>Produkti</span>
+      </div>
+
+      <!-- Product Detail -->
+      <div class="product-detail">
+        <div class="pd-gallery">
+          <img id="main-image" class="pd-main-img" src="" alt="">
+          <div class="pd-thumbs" id="thumbs"></div>
+        </div>
+        <div class="pd-info">
+          <h1 id="p-name"></h1>
+          <p class="pd-price" id="p-price"></p>
+          <p class="pd-desc" id="p-desc"></p>
+          <p class="pd-details" id="p-details"></p>
+          <button id="add-to-cart" class="btn btn-primary pd-add">Shto në shportë</button>
+          <p class="pd-shipping-note">🚚 Transport falas për porosi mbi 50€</p>
+          <p class="pd-shipping-note">💳 Pagesë në dorëzim ose transfer bankar</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produkte të ngjashme -->
+    <section class="related-section">
+      <div class="container">
+        <h2 class="section-title">Produkte të tjera</h2>
+        <div class="product-grid" id="related-products"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Thur Handmade</h3>
+          <p>Love stitched into every bag 👜💞</p>
+        </div>
+        <div class="footer-col">
+          <h3>Dyqani</h3>
+          <a href="dyqani.html">Të gjitha çantat</a>
+          <a href="shporta.html">Shporta</a>
+          <a href="index.html#custom-order">Porosi sipas dëshirës</a>
+        </div>
+        <div class="footer-col">
+          <h3>Kontakt</h3>
+          <a href="mailto:info@thurhandmade.com">info@thurhandmade.com</a>
+          <a href="https://instagram.com/f_erahandmade" target="_blank" rel="noopener">📸 @f_erahandmade</a>
+          <a href="tel:+38344123456">+383 44 123 456</a>
+        </div>
+        <div class="footer-col">
+          <h3>Informata</h3>
+          <p>Prishtinë, Kosovë</p>
+          <p>Transport në gjithë Kosovën</p>
+          <p>Pagesë në dorëzim ose transfer</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Thur Handmade. Të gjitha të drejtat e rezervuara.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

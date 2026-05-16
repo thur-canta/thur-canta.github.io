@@ -2,91 +2,215 @@
 <html lang="sq">
 <head>
   <meta charset="UTF-8">
-  <title>THUR – Knitted Bags</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thur Handmade – Çanta të punuara me dorë</title>
+  <meta name="description" content="Love stitched into every bag 👜💞 Çanta të punuara me dorë (crochet), të krijuara me dashuri në Kosovë. Blini online me transport në gjithë Kosovën.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="topbar">
-      <div class="lang-switch">
-        <a href="?lang=sq">SQ</a> | <a href="?lang=en">EN</a>
+<body data-page="home">
+
+  <!-- Shiriti i njoftimit -->
+  <div class="announce-bar">🚚 Transport falas për porosi mbi 50€ në gjithë Kosovën</div>
+
+  <!-- Navigimi -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">Thur<small>Handmade</small></a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Ballina</a>
+        <a href="dyqani.html">Dyqani</a>
+        <a href="#story">Rreth nesh</a>
+        <a href="#custom-order">Porosi sipas dëshirës</a>
+        <a href="#footer-contact">Kontakt</a>
+        <a href="shporta.html" class="cart-link">
+          <span class="cart-icon">🛒</span>
+          Shporta
+          <span class="cart-badge">0</span>
+        </a>
       </div>
-      <div class="top-contact">
-        <a href="mailto:info@thur.com">info@thur.com</a> |
-        <a href="https://instagram.com/thurbags" target="_blank">@thurbags</a>
+      <a href="shporta.html" class="mobile-cart" aria-label="Shporta">
+        🛒<span class="cart-badge">0</span>
+      </a>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img src="img/bag3-5.jpeg" alt="Koleksioni Thur Handmade" class="hero-bg">
+    <div class="hero-content">
+      <h1>Love stitched into every bag 👜💞</h1>
+      <p>Çanta unike, të punuara me dorë në Kosovë — perfekte për ditët tuaja të lumtura.</p>
+      <a href="dyqani.html" class="btn btn-primary">Shiko koleksionin</a>
+    </div>
+  </section>
+
+  <!-- Veçoritë -->
+  <section class="container">
+    <div class="features-strip">
+      <div class="feature-item">
+        <div class="feature-icon">🧶</div>
+        <h3>Punë dore 100%</h3>
+        <p>Çdo çantë punuar me crochet me dashuri</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🚚</div>
+        <h3>Transport në gjithë Kosovën</h3>
+        <p>Dërgesa brenda 2-4 ditëve pune</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">💳</div>
+        <h3>Pagesë në dorëzim</h3>
+        <p>Paguani kur t'ju vijë porosia në derë</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✨</div>
+        <h3>Porosi sipas dëshirës</h3>
+        <p>Krijojmë çantën sipas dëshirës suaj</p>
       </div>
     </div>
-    <div class="branding">
-      <h1>THUR</h1>
-      <nav class="main-nav">
-        <a href="#home" data-key="home">Ballina</a>
-        <a href="#bags" data-key="bags">Çantat</a>
-        <a href="#contact" data-key="contactNav">Kontakt</a>
-      </nav>
-    </div>
-  </header>
+  </section>
 
-  <section id="home" class="hero">
-    <img src="img/bag1-1.jpeg" alt="Knitted Bags Collection">
-    <div class="hero-text">
-      <h2 data-key="heroTitle">Çanta të thurura me dorë</h2>
-      <p data-key="heroText">Zbuloni dizajnet tona të fundit të thurura me dorë, të krijuara me dashuri dhe kujdes.</p>
+  <!-- Produktet e zgjedhura -->
+  <section class="products-section">
+    <div class="container">
+      <h2 class="section-title">Produktet tona</h2>
+      <div class="product-grid" id="featured-products"></div>
+      <div style="text-align:center; margin-top:2.5rem;">
+        <a href="dyqani.html" class="btn btn-outline">Shiko të gjitha produktet →</a>
+      </div>
     </div>
   </section>
 
-  <section id="bags" class="product-grid">
-    <a href="bag1.html" class="product-card">
-      <img src="img/bag1-1.jpeg" alt="Colorful Tote">
-      <h3>Colorful Tote</h3>
-      <p>$30</p>
-    </a>
-    <a href="bag2.html" class="product-card">
-      <img src="img/bag2-1.jpeg" alt="Mini Satchel">
-      <h3>Mini Satchel</h3>
-      <p>$25</p>
-    </a>
-    <!-- …add more product cards as needed… -->
+  <!-- Rreth nesh -->
+  <section class="story-section" id="story">
+    <div class="container">
+      <div class="story-grid">
+        <img src="img/bag8-1.jpeg" alt="Punë dore Thur Handmade" loading="lazy">
+        <div class="story-text">
+          <h2>Rreth Thur Handmade</h2>
+          <p>Thur Handmade ka lindur nga dashuria për punën e dorës — crochet. Çdo çantë që krijojmë është unike, e thurur me durim, dashuri dhe materiale cilësore.</p>
+          <p>Ne besojmë se gjërat e bëra me dorë kanë shpirt. Çantat tona nuk janë vetëm aksesorë — ato janë vepra arti që mund t'i mbani me vete çdo ditë.</p>
+          <p><strong>Nga Kosova, me dashuri, për ju. 🤍</strong></p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="contact" class="site-contact">
-    <h2 data-key="sectionContactTitle">Na Kontaktoni</h2>
-    <p data-key="sectionContactText">Pyetje ose porosi të personalizuara? Na kontaktoni në email
-      <a href="mailto:info@thur.com">info@thur.com</a> ose DM në Instagram.</p>
+  <!-- Porosi sipas dëshirës -->
+  <section class="custom-order-section" id="custom-order">
+    <div class="container">
+      <h2 class="section-title">Porosi sipas dëshirës</h2>
+      <div class="custom-order-inner">
+        <div class="custom-order-text">
+          <h2>Dëshironi çantën tuaj unike?</h2>
+          <p>Nëse nuk gjeni atë që dëshironi, na tregoni vizionin tuaj dhe ne do ta krijojmë për ju! Çdo detaj, çdo ngjyrë, çdo madhësi — sipas dëshirës suaj.</p>
+          <ul>
+            <li>🎨 Zgjidhni ngjyrën dhe stilin</li>
+            <li>📐 Zgjidhni madhësinë</li>
+            <li>🧶 Zgjidhni tipin e fijes</li>
+            <li>💝 Shtoni detaje speciale (perla, lule, etj.)</li>
+          </ul>
+          <p>Porosia do të përgatitet brenda 5-10 ditëve pune.</p>
+        </div>
+        <div class="custom-order-form" id="custom-form-wrap">
+          <form id="custom-order-form">
+            <div class="form-group">
+              <label for="co-name">Emri juaj *</label>
+              <input type="text" id="co-name" name="name" required placeholder="p.sh. Fjolla Krasniqi">
+            </div>
+            <div class="form-group">
+              <label for="co-phone">Numri i telefonit *</label>
+              <input type="tel" id="co-phone" name="phone" required placeholder="p.sh. 044 123 456">
+            </div>
+            <div class="form-group">
+              <label for="co-color">Ngjyra e dëshiruar</label>
+              <input type="text" id="co-color" name="color" placeholder="p.sh. Rozë, Bezhë, Gri...">
+            </div>
+            <div class="form-group">
+              <label for="co-size">Madhësia</label>
+              <select id="co-size" name="size">
+                <option value="e vogël">E vogël (20-25 cm)</option>
+                <option value="mesatare" selected>Mesatare (30-35 cm)</option>
+                <option value="e madhe">E madhe (40+ cm)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="co-type">Tipi i çantës</label>
+              <select id="co-type" name="type">
+                <option value="tote">Tote (dorë)</option>
+                <option value="shpatull">Shpatull</option>
+                <option value="crossbody">Crossbody</option>
+                <option value="backpack">Çantë shpine</option>
+                <option value="clutch">Clutch (dorëze)</option>
+                <option value="tjeter">Tjetër</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="co-details">Përshkrimi i çantës *</label>
+              <textarea id="co-details" name="details" required placeholder="Përshkruani çantën e ëndrrave tuaja — stili, detajet, inspirimi..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%">Dërgo kërkesën →</button>
+          </form>
+          <div class="custom-order-success" id="co-success">
+            <div class="conf-icon">✓</div>
+            <h3>Faleminderit!</h3>
+            <p>Kërkesa juaj u dërgua me sukses. Do t'ju kontaktojmë brenda 24 orëve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer class="site-footer">
-    <p>&copy; 2024 THUR</p>
+  <!-- Instagram CTA -->
+  <section class="instagram-cta">
+    <div class="container">
+      <h2>Na ndiqni në Instagram</h2>
+      <p>Shikoni krijmet tona më të fundit dhe frymëzohuni!</p>
+      <a href="https://instagram.com/f_erahandmade" target="_blank" rel="noopener" class="btn">📸 @f_erahandmade</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="footer-contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Thur Handmade</h3>
+          <p>Love stitched into every bag 👜💞</p>
+          <p>Çanta të punuara me dorë, të krijuara me dashuri në Kosovë.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Dyqani</h3>
+          <a href="dyqani.html">Të gjitha çantat</a>
+          <a href="shporta.html">Shporta</a>
+          <a href="#custom-order">Porosi sipas dëshirës</a>
+        </div>
+        <div class="footer-col">
+          <h3>Kontakt</h3>
+          <a href="mailto:info@thurhandmade.com">info@thurhandmade.com</a>
+          <a href="https://instagram.com/f_erahandmade" target="_blank" rel="noopener">📸 @f_erahandmade</a>
+          <a href="tel:+38344123456">+383 44 123 456</a>
+        </div>
+        <div class="footer-col">
+          <h3>Informata</h3>
+          <p>Prishtinë, Kosovë</p>
+          <p>Transport në gjithë Kosovën</p>
+          <p>Pagesë në dorëzim ose transfer</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Thur Handmade. Të gjitha të drejtat e rezervuara.</p>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    const translations = {
-      sq: {
-        home: "Ballina",
-        bags: "Çantat",
-        contactNav: "Kontakt",
-        heroTitle: "Çanta të thurura me dorë",
-        heroText: "Zbuloni dizajnet tona të fundit të thurura me dorë, të krijuara me dashuri dhe kujdes.",
-        sectionContactTitle: "Na Kontaktoni",
-        sectionContactText: "Pyetje ose porosi të personalizuara? Na kontaktoni në email"
-      },
-      en: {
-        home: "Home",
-        bags: "Bags",
-        contactNav: "Contact",
-        heroTitle: "Handmade Knitted Bags",
-        heroText: "Discover our latest handcrafted designs, made with love and care.",
-        sectionContactTitle: "Contact Us",
-        sectionContactText: "Questions or custom orders? Email us at"
-      }
-    };
-
-    const params = new URLSearchParams(window.location.search);
-    const lang = params.get("lang") === "en" ? "en" : "sq";
-    document.documentElement.lang = lang;
-    document.querySelectorAll("[data-key]").forEach(el => {
-      const key = el.getAttribute("data-key");
-      el.innerText = translations[lang][key] || el.innerText;
-    });
-  </script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

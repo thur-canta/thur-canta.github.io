@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <title>THUR – Knitted Bags</title>
+  <!-- disable browser caching -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body>
+  <header class="site-header">
+    <div class="topbar">
+      <div class="lang-switch">
+        <a href="?lang=sq">SQ</a> | <a href="?lang=en">EN</a>
+      </div>
+      <div class="top-contact">
+        <a href="mailto:info@thur.com">info@thur.com</a> |
+        <a href="https://instagram.com/thurbags" target="_blank">@thurbags</a>
+      </div>
+    </div>
+    <div class="branding">
+      <h1>THUR</h1>
+      <nav class="main-nav">
+        <a href="#home" data-key="home">Ballina</a>
+        <a href="#bags" data-key="bags">Çantat</a>
+        <a href="#contact" data-key="contactNav">Kontakt</a>
+        <a href="basket.html">Basket</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <img src="img/bag1-1.jpeg" alt="Knitted Bags Collection">
+    <div class="hero-text">
+      <h2 data-key="heroTitle">Çanta të thurura me dorë</h2>
+      <p data-key="heroText">Zbuloni dizajnet tona të fundit të thurura me dorë, të krijuara me dashuri dhe kujdes.</p>
+    </div>
+  </section>
+
+  <section id="bags" class="product-grid">
+    <a href="bag1.html" class="product-card">
+      <img src="img/bag1-1.jpeg" alt="Colorful Tote">
+      <h3>Colorful Tote</h3>
+      <p>$30</p>
+    </a>
+    <a href="bag2.html" class="product-card">
+      <img src="img/bag2-1.jpeg" alt="Mini Satchel">
+      <h3>Mini Satchel</h3>
+      <p>$25</p>
+    </a>
+    <a href="bag3.html" class="product-card">
+      <img src="img/bag3-1.jpeg" alt="Boho Shoulder">
+      <h3>Boho Shoulder</h3>
+      <p>$40</p>
+    </a>
+    <a href="bag4.html" class="product-card">
+      <img src="img/bag4-1.jpeg" alt="Woolen Clutch">
+      <h3>Woolen Clutch</h3>
+      <p>$35</p>
+    </a>
+    <a href="bag5.html" class="product-card">
+      <img src="img/bag5-1.jpeg" alt="Market Shopper">
+      <h3>Market Shopper</h3>
+      <p>$45</p>
+    </a>
+  </section>
+
+  <section id="contact" class="site-contact">
+    <h2 data-key="sectionContactTitle">Na Kontaktoni</h2>
+    <p data-key="sectionContactText">Pyetje ose porosi të personalizuara? Na kontaktoni në email
+      <a href="mailto:info@thur.com">info@thur.com</a> ose DM në Instagram.</p>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2024 THUR</p>
+  </footer>
+
+  <script>
+    const translations = {
+      sq: {
+        home: "Ballina",
+        bags: "Çantat",
+        contactNav: "Kontakt",
+        heroTitle: "Çanta të thurura me dorë",
+        heroText: "Zbuloni dizajnet tona të fundit të thurura me dorë, të krijuara me dashuri dhe kujdes.",
+        sectionContactTitle: "Na Kontaktoni",
+        sectionContactText: "Pyetje ose porosi të personalizuara? Na kontaktoni në email"
+      },
+      en: {
+        home: "Home",
+        bags: "Bags",
+        contactNav: "Contact",
+        heroTitle: "Handmade Knitted Bags",
+        heroText: "Discover our latest handcrafted designs, made with love and care.",
+        sectionContactTitle: "Contact Us",
+        sectionContactText: "Questions or custom orders? Email us at"
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get("lang") === "en" ? "en" : "sq";
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-key]").forEach(el => {
+      const key = el.getAttribute("data-key");
+      el.innerText = translations[lang][key] || el.innerText;
+    });
+  </script>
+</body>
+</html>

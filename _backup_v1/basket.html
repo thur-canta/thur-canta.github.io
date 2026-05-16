@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <title>Basket – THUR</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- copy header from index.html -->
+  <header class="site-header">
+    <div class="topbar">
+      <div class="lang-switch">
+        <a href="?lang=sq">SQ</a> | <a href="?lang=en">EN</a>
+      </div>
+      <div class="top-contact">
+        <a href="mailto:info@thur.com">info@thur.com</a> |
+        <a href="https://instagram.com/thurbags" target="_blank">@thurbags</a>
+      </div>
+    </div>
+    <div class="branding">
+      <h1>THUR</h1>
+      <nav class="main-nav">
+        <a href="index.html" data-key="home">Ballina</a>
+        <a href="index.html#bags" data-key="bags">Çantat</a>
+        <a href="index.html#contact" data-key="contactNav">Kontakt</a>
+        <a href="basket.html">Basket</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="basket-page">
+    <h1>Basket</h1>
+    <ul id="basket-list" class="basket-list"></ul>
+    <p>Total: $<span id="basket-total">0</span></p>
+    <button id="checkout" class="send-order">Checkout</button>
+  </main>
+
+  <!-- copy footer from index.html -->
+  <footer class="site-footer">
+    <p>&copy; 2024 THUR</p>
+  </footer>
+
+  <script>
+    const CART_KEY = 'thur_cart';
+    const listEl   = document.getElementById('basket-list');
+    const totalEl  = document.getElementById('basket-total');
+    const priceMap = {
+      'Colorful Tote': 30,
+      'Mini Satchel': 25,
+      'Boho Shoulder': 40,
+      'Woolen Clutch': 35,
+      'Market Shopper': 45
+    };
+    const imageMap = {
+      'Colorful Tote': 'bag1-1.jpeg',
+      'Mini Satchel': 'bag2-1.jpeg',
+      'Boho Shoulder': 'bag3-1.jpeg',
+      'Woolen Clutch': 'bag4-1.jpeg',
+      'Market Shopper': 'bag5-1.jpeg'
+    };
+
+    function loadBasket() {
+      const cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
+      listEl.innerHTML = '';
+      let total = 0;
+      Object.entries(cart).forEach(([name, qty]) => {
+        const unit      = priceMap[name] || 0;
+        const lineTotal = unit * qty;
+        total += lineTotal;
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <img src="img/${imageMap[name]}" alt="${name}" style="width:60px;vertical-align:middle;margin-right:10px;">
+          <span>${name}</span>
+          <span>x${qty}</span>
+          <span>@ $${unit}</span>
+          <span>= $${lineTotal}</span>
+        `;
+        listEl.appendChild(li);
+      });
+      totalEl.textContent = total;
+    }
+
+    document.getElementById('checkout').addEventListener('click', () => {
+      const cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
+      const lines = Object.entries(cart).map(([n,q]) => `${n} x${q}`).join('\n');
+      const total = totalEl.textContent;
+      const body  = encodeURIComponent(lines + `\nTotal: $${total}`);
+      window.location.href = `mailto:abcde@gmail.com?subject=Order%20from%20THUR&body=${body}`;
+    });
+
+    window.addEventListener('DOMContentLoaded', loadBasket);
+  </script>
+</body>
+</html>
