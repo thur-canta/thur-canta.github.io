@@ -4,7 +4,21 @@
 (function () {
   'use strict';
 
-  const CART_KEY = 'thur_cart';
+  const CART_KEY   = 'thur_cart';
+  const ORDERS_KEY = 'thur_orders';
+
+  /* ── Order storage ───────────────────────────────── */
+
+  function getOrders() {
+    try { return JSON.parse(localStorage.getItem(ORDERS_KEY)) || []; }
+    catch { return []; }
+  }
+
+  function saveOrderLocally(order) {
+    const orders = getOrders();
+    orders.unshift(order); // newest first
+    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+  }
 
   /* ── Validation helpers ──────────────────────────── */
 
@@ -315,6 +329,19 @@
       // email fallback
       const mailUrl = `mailto:${SITE.email}?subject=${encodeURIComponent('Porosi ' + orderNo)}&body=${encodeURIComponent(txt)}`;
 
+      // save order locally in browser storage
+      saveOrderLocally({
+        no: orderNo,
+        date: new Date().toISOString(),
+        name, phone, email, city, address, payment, notes,
+        items: cart.map(i => {
+          const p = productById(i.id);
+          return { id: i.id, name: p ? p.name : i.id, qty: i.qty, price: p ? p.price : 0 };
+        }),
+        shipping: ship,
+        total
+      });
+
       clearCart();
       showConfirmation(orderNo, payment, waUrl, mailUrl);
     });
@@ -341,8 +368,52 @@
         </div>
         <a href="index.html" class="btn btn-outline" style="margin-top:1rem"> <- Kthehu në faqen kryesore</a>
         <p class="conf-note">Do të kontaktoheni nga ekipi ynë për konfirmimin e porosisë.</p>
+        <p class="conf-note" style="margin-top:.5rem;font-size:.8rem;color:var(--clr-text-light)">
+          💾 Porosia u ruajt edhe në këtë pajisje.
+          <button onclick="showOrderHistory()" style="background:none;border:none;color:var(--clr-primary);cursor:pointer;font-size:.8rem;text-decoration:underline">Shiko historikun e porosive</button>
+        </p>
       </div>`;
   }
+
+  window.showOrderHistory = function () {
+    const orders = getOrders();
+    if (!orders.length) { alert('Nuk ka porosi të ruajtura në këtë pajisje.'); return; }
+    const rows = orders.map(o => {
+      const d = new Date(o.date).toLocaleDateString('sq-AL', { day:'2-digit', month:'2-digit', year:'numeric' });
+      const itemList = o.items.map(i => `${i.name} ×${i.qty}`).join(', ');
+      return `<tr>
+        <td><strong>${o.no}</strong></td>
+        <td>${d}</td>
+        <td>${o.name}</td>
+        <td style="font-size:.85rem">${itemList}</td>
+        <td><strong>${o.total.toFixed(2)}€</strong></td>
+      </tr>`;
+    }).join('');
+
+    document.querySelector('main').innerHTML = `
+      <div class="order-history" style="padding:2rem 0">
+        <h1 style="margin-bottom:1.5rem">📋 Historiku i porosive</h1>
+        <p style="font-size:.85rem;color:var(--clr-text-light);margin-bottom:1rem">Këto porosi janë ruajtur vetëm në këtë pajisje (browser).</p>
+        <div style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:.9rem">
+            <thead>
+              <tr style="border-bottom:2px solid var(--clr-primary);text-align:left">
+                <th style="padding:.6rem .4rem">Nr. Porosisë</th>
+                <th style="padding:.6rem .4rem">Data</th>
+                <th style="padding:.6rem .4rem">Emri</th>
+                <th style="padding:.6rem .4rem">Produktet</th>
+                <th style="padding:.6rem .4rem">Totali</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="index.html" class="btn btn-outline">&larr; Kryefaqja</a>
+          <button onclick="if(confirm('Fshi të gjitha porositë e ruajtura?')){localStorage.removeItem('thur_orders');location.reload();}" class="btn btn-outline" style="color:#c0392b;border-color:#c0392b">🗑 Fshi historikun</button>
+        </div>
+      </div>`;
+  };
 
   /* ── Custom Order Form ───────────────────────────── */
 
